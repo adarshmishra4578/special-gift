@@ -3,61 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday special</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Birthday Special</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background: linear-gradient(135deg, #ff758c, #ff7eb3);
             font-family: 'Poppins', sans-serif;
-            overflow: hidden; /* Prevent scrolling */
-            position: relative; /* Needed for absolute positioning of emojis */
-        }
-
-        .birthday-wish{
             text-align: center;
-            font-size: 10vh;
-            margin-bottom: 10%;
-            justify-content: center;
-            color: #333;
-
+            padding: 20px;
+            overflow: hidden;
         }
-        
+
+        .birthday-wish {
+            font-size: 5vh;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
         #login-form {
             background: rgba(255, 255, 255, 0.2);
-            padding: 30px 40px;
+            padding: 20px;
             border-radius: 15px;
             backdrop-filter: blur(10px);
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
-            margin-top: 10%;
             animation: fadeIn 1s ease-in-out;
-            position: relative;
-            z-index: 10; /* Ensure form stays on top */
+            width: 90%;
+            max-width: 400px;
         }
-        
+
         label {
-            font-size: 20px;
+            font-size: 18px;
             color: white;
             font-weight: 600;
-            margin-bottom: 10px;
         }
-        
+
         input {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             margin: 10px 0;
             border: none;
             border-radius: 12px;
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
             background: rgba(255, 255, 255, 0.7);
             color: #333;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: background 0.3s ease;
         }
 
@@ -66,24 +67,24 @@
             outline: none;
             box-shadow: 0 0 8px rgba(255, 77, 121, 0.7);
         }
-        
+
         button {
             background: #ff4d79;
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 20px;
+            padding: 12px 20px;
+            font-size: 18px;
             border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 15px;
+            margin-top: 10px;
         }
-        
+
         button:hover {
             background: #ff2357;
             transform: scale(1.1);
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -102,53 +103,58 @@
             to { transform: translateY(100vh); }
         }
 
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .birthday-wish {
+                font-size: 4vh;
+            }
+            button {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="birthday-wish"
-    <h1> Happy Birthday Sumo 🐷 ❤️</h1>
-
+    <div class="birthday-wish">
+        <h1>Happy Birthday Sumo 🐷 ❤️</h1>
+    </div>
     <form id="login-form">
         <label for="code">Enter Your Name:</label>
         <input type="text" id="code" name="code" placeholder="Your Name">
         <button id="submit-btn">Login</button>
     </form>
-
     <div id="result"></div>
-</div>
     <script>
         const form = document.getElementById('login-form');
         const codeInput = document.getElementById('code');
         const submitBtn = document.getElementById('submit-btn');
         const resultDiv = document.getElementById('result');
 
-        const secretCode = 'Sumo'; // Replace with your secret code
-        const nextPageUrl = 'book.html'; // Replace with the URL of the new page
+        const secretCode = 'Sumo';
+        const nextPageUrl = 'book.html';
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const userInput = codeInput.value.trim();
             if (userInput === secretCode) {
-                resultDiv.innerHTML = 'Good sumo';
-                window.location.href = nextPageUrl; // Redirect to new page
+                resultDiv.innerHTML = 'Good Sumo';
+                window.location.href = nextPageUrl;
             } else {
-                resultDiv.innerHTML = 'aapna aasli nam dal Sumo  ';
+                resultDiv.innerHTML = 'Aapna asli naam dal Sumo';
             }
         });
 
-        // Function to create falling emojis
         function createFallingEmoji() {
             const emojis = ['❤️', '💖', '💘', '💕', '💞', '💓', '💗', '🎉','🍰','🎂','😘'];
             const emoji = document.createElement('div');
             emoji.classList.add('falling-emoji');
             emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            emoji.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
-            emoji.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Random speed for fall
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
             document.body.appendChild(emoji);
-            setTimeout(() => emoji.remove(), 5000); // Remove emoji after it falls
+            setTimeout(() => emoji.remove(), 5000);
         }
 
-        // Generate falling emojis every 500ms
         setInterval(createFallingEmoji, 500);
     </script>
 </body>
